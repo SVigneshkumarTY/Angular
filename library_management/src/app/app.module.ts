@@ -14,6 +14,13 @@ import { StudentComponent } from './student/student.component';
 import { LibrarianComponent } from './librarian/librarian.component';
 import { AdminComponent } from './admin/admin.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
+import { ViewbooksComponent } from './viewbooks/viewbooks.component';
+import { AddbooksComponent } from './addbooks/addbooks.component';
+import { BooksComponent } from './books/books.component';
+import {HttpClientModule} from '@angular/common/http';
+import { UpdateBookComponent } from './update-book/update-book.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +32,20 @@ import { ViewUsersComponent } from './view-users/view-users.component';
     StudentComponent,
     LibrarianComponent,
     AdminComponent,
-    ViewUsersComponent
+    ViewUsersComponent,
+    ViewbooksComponent,
+    AddbooksComponent,
+    BooksComponent,
+    UpdateBookComponent,
+    UpdateUserComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

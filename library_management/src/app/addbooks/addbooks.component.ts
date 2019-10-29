@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LibraryServiceService } from '../library-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addbooks',
@@ -8,15 +9,19 @@ import { LibraryServiceService } from '../library-service.service';
 })
 export class AddbooksComponent implements OnInit {
 
-  constructor(private libraryService: LibraryServiceService) { }
+  constructor(private libraryService: LibraryServiceService, private router: Router) { }
 
   addBook(bookform) {
-     console.log(bookform.value);
      this.libraryService.addBook(bookform.value).subscribe(res => {
-        console.log('book added successfully');
+      bookform.reset();
+      this.router.navigateByUrl('/books');
      }, err => {
         console.log('book not added');
      });
+  }
+
+  librarianHomePage() {
+    this.router.navigateByUrl('/librarian');
   }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
-<table class="table table-striped table-inverse table-responsive mt-5 " style="margin-left: 400px;">
-    <thead class="thead-inverse bg-dark">
+<input type="button" class="btn btn-outline-success float-right mt-2 mb-2" value="Home" (click)="librarianHomePage()">
+<table class="table table-striped table-inverse table-responsive mt-5 " style="margin-left: 200px;">
+    <thead class="thead-inverse bg-dark text-white">
         <tr>
             <th>Book Id</th>
             <th>Book Name</th>
@@ -10,13 +11,13 @@
         </tr>
         </thead>
         <tbody class="bg-info">
-            <tr>
-                <td scope="row"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button class="btn btn-warning">Update</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
+            <tr *ngFor="let book of libraryService.books">
+                <td>{{book.bookId}}</td>
+                <td>{{book.bookName}}</td>
+                <td>{{book.authorName}}</td>
+                <td>{{book.category}}</td>
+                <td><button class="btn btn-warning" (click)="updateBook(book)">Update</button></td>
+                <td><button class="btn btn-danger" (click)="deleteBook(book)">Delete</button></td>
             </tr>
            
         </tbody>
