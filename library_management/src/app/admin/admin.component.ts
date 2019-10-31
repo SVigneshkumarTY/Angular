@@ -17,6 +17,10 @@ export class AdminComponent implements OnInit {
     //this.libraryService.getAllUsers();
     this.router.navigateByUrl('/viewusers');
   }
+  searchByName(userName) {
+    this.libraryService.searchByName(userName.value);
+    userName.reset();
+  }
 
   ngOnInit() {
     document.body.classList.add('bg-img');

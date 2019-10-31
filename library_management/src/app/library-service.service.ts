@@ -124,4 +124,19 @@ export class LibraryServiceService {
     //return this.http.get(`${this.url}/login?userName=${data.userEmail}&password=${data.userPassword}`);
     return this.http. delete(`${this.url}/returnBook?bookId=${book.bookId}`);
   }
+  searchUsers:any=[];
+  searchByName(userNAme){
+    this.http.get(`${this.url}/getByName?userName=${userNAme}`).pipe(map(resData => {
+      let userArr = [];
+      for (let val in resData) {
+        userArr.push(resData[val]);
+      }
+      return userArr;
+    })).subscribe(data => {
+      this.searchUsers = data;
+      console.log('hello');
+    }, err => {
+      console.log(err);
+    });
+  }
 }
