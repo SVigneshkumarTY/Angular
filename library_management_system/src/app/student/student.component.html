@@ -1,0 +1,28 @@
+<h1 style="text-align: center;color: red;font-family: fantasy;" class="mt-2">Welcome Student!!</h1>
+<button class="btn btn-primary mt-3" (click)='viewBooks()'> Allocated Books</button>
+<a href="/changepwd" style="color:red;background:white" class="float-right">Change Password</a>
+
+<h3 style="color: chartreuse; float: right;">{{libraryService.printMessage}}</h3>
+<h2 style="margin-left: 190px;color:floralwhite">Available Books</h2>
+<div class="col-md-8 offset-md-2 card card-body mt-2">
+    <table class="table table-hover mt-3">
+        <thead class="bg-dark">
+            <tr>
+                <th style="color: orange;">Book Id</th>
+                <th style="color: orange;">Book Name</th>
+                <th style="color: orange;">Author</th>
+                <th style="color: orange;">Category</th>
+                <th style="color:orange;">Request</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of this.libraryService.books">
+                <td>{{book.bookId}}</td>
+                <td>{{book.bookName}}</td>
+                <td>{{book.authorName}}</td>
+                <td>{{book.category}}</td>
+                <td><button class="btn btn-success" (click)="requestForBook(book)">Request</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,29 @@
+<a href="/changepwd" style="color:red;background:white" class="float-right">Change Password</a>
+<div class="float-left">
+<table class="table table-striped table-inverse table-responsive mt-5 ">
+    <h1 style="color: white;" >Students Request </h1>
+    <thead class="thead-inverse bg-dark">
+        <tr>
+            <!-- <th style="color: wheat;">Index</th> -->
+            <th style="color: wheat;">User Id</th>
+            <th style="color: wheat;">Book Id</th>
+            <th style="color: wheat;">Accept</th>
+            <th style="color: wheat;">Decline</th>
+        </tr>
+        </thead>
+        <tbody class="bg-dark">
+            <tr>
+                <!-- <td scope="row" style="color:lightblue"></td> -->
+                <td style="color:lightblue">{{libraryService.studentBookRequest.userId}}</td>
+                <td style="color:lightblue">{{libraryService.studentBookRequest.bookId}}</td>
+                <td><button class="btn btn-success" (click)="acceptBookRequest(libraryService.studentBookRequest.userId,libraryService.studentBookRequest.bookId)">Accept</button></td>
+                <td><button class="btn btn-danger" (click)="declineBookReq(libraryService.studentBookRequest.userId,libraryService.studentBookRequest.bookId)">Decline</button></td>
+            </tr>
+            
+        </tbody>
+</table>
+</div>
+<div class="float-left mt-5 " style="margin-left: 500px;">
+    <button class="btn btn-warning" (click)='addBook()'>Add Books</button><br>
+    <button class="mt-5 btn btn-warning" (click)="viewBooks()">View Books</button>
+</div>
