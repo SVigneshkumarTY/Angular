@@ -13,6 +13,9 @@ export class AdminComponent implements OnInit {
   addUser() {
     this.router.navigateByUrl('/register');
   }
+  send(){
+    this.router.navigateByUrl("/changepwd");
+  }
   viewUsers() {
     //this.libraryService.getAllUsers();
     this.router.navigateByUrl('/viewusers');

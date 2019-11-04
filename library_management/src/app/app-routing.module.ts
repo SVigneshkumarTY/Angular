@@ -13,6 +13,7 @@ import { BooksComponent } from './books/books.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ChangepwdComponent } from './changepwd/changepwd.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: 'books', component: BooksComponent},
   {path: 'updateBook', component: UpdateBookComponent},
   {path: 'updateUser', component: UpdateUserComponent},
-  {path: 'logout' , component: LogoutComponent}
+  {path: 'logout' , component: LogoutComponent},
+  {path:'changepwd',component:ChangepwdComponent}
 
 ];
 

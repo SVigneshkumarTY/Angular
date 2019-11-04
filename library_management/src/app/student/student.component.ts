@@ -15,6 +15,10 @@ export class StudentComponent implements OnInit {
     } , 5000);
   }
 
+  send(){
+    this.router.navigateByUrl("/changepwd");
+  }
+
   viewBooks() {
     this.router.navigate(["/viewbooks"]);
   }

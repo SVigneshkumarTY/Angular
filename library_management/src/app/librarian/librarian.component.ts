@@ -13,6 +13,9 @@ export class LibrarianComponent implements OnInit {
   addBook(){
     this.router.navigateByUrl("/addbooks")
   }
+  send(){
+    this.router.navigateByUrl("/changepwd");
+  }
   viewBooks() {
     this.libraryService.getAllBook();
     console.log(this.libraryService.books);

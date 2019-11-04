@@ -21,6 +21,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ChangepwdComponent } from './changepwd/changepwd.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LogoutComponent } from './logout/logout.component';
     BooksComponent,
     UpdateBookComponent,
     UpdateUserComponent,
-    LogoutComponent
+    LogoutComponent,
+    ChangepwdComponent
   ],
   imports: [
     BrowserModule,

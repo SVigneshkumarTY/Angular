@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('reqUserId', this.libaryService.selectedUser.userId);
       if (this.authenticationService.authenticate(this.libaryService.selectedUser.userEmail)) {
 
-        if (this.libaryService.selectedUser.userRole === 'admin') {
+        if (this.libaryService.selectedUser.userRole === 'Admin') {
           this.router.navigateByUrl('/admin');
-        } else if (this.libaryService.selectedUser.userRole === 'librarian') {
+        } else if (this.libaryService.selectedUser.userRole === 'Librarian') {
           this.router.navigateByUrl('/librarian');
         } else {
           this.router.navigateByUrl('/student');

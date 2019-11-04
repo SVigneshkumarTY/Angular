@@ -33,7 +33,7 @@ export class LibraryServiceService {
     category: ''
   };
 
-  url: string = 'http://localhost:8080/librarymanagement';
+  url: string = 'http://localhost:8082/librarymanagement';
   constructor(private http: HttpClient) { }
 
   addUser(data) {
@@ -138,5 +138,9 @@ export class LibraryServiceService {
     }, err => {
       console.log(err);
     });
+  }
+
+  changepassword(id,op,np){
+  return this.http.get(`${this.url}/changepwd?userId=${id}&userPassword=${op}&newPassword=${np}`,headeroption);
   }
 }
