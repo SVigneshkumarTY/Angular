@@ -1,0 +1,26 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="border: 1px solid black; border-radius: 5px">
+                <form action="" #bookform='ngForm' (ngSubmit)='updateBook(bookform)' class="form-container">
+                        <h1 style="text-align: center;color: white" class="bg-dark"> Update Book!!</h1>
+                        <input type="hidden" name="bookId" #bookId='ngModel' [ngModel]="libraryService.selectedBook.bookId">
+                        <div class="form-group">
+                            <input type="text" name='bookName' #bookName='ngModel' [(ngModel)]="libraryService.selectedBook.bookName"  class="form-control" placeholder="Enter Book Name Here">
+                        </div>
+                        <div class="form-group">
+                                <input type="text" name='authorName' #authorName='ngModel' [(ngModel)]="libraryService.selectedBook.authorName"  class="form-control" placeholder="Enter Author Name Here">
+                            </div>
+                            <div class="form-group">
+                                    <input type="text" name='category' #category='ngModel' [(ngModel)]="libraryService.selectedBook.category"   class="form-control" placeholder="Enter Category Here">
+                                </div>
+                               
+                        <div class="form-group">
+                            <button type="button" class="btn btn-warning col-md-6 form-control" (click)="cancelBookUpdate()">Cancel</button>
+                            <button type="submit" class="btn btn-success col-md-6 form-control float-right">Update Book</button>
+                        </div>
+                    </form>
+        </div>
+
+    </div>
+</div>

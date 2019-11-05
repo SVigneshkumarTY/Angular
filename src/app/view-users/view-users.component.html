@@ -1,0 +1,28 @@
+<input type="button" class="btn btn-outline-success float-right" style="margin-top:40px;margin-right: 75px;margin-bottom: 30px" value="Admin Home" (click)="navigateAdminHome()">
+<div class="container mt-2 mb-2">
+    <div class="col md-8 mt-2 card card-body">
+            <input type="search" class="form-control" [(ngModel)]='search'>
+<table class="table table-bodered table-hover">
+    <thead>
+        <tr>
+            <th style="color: orangered;"><h4>User Id</h4></th>
+            <th style="color: orangered;"><h4>User Name</h4></th>
+            <th style="color: orangered;"><h4>User Email</h4></th>
+            <th style="color: orangered;"><h4>Contact No</h4></th>
+            <th style="color: orangered;"><h4>Update</h4></th>
+            <th style="color: orangered;"><h4>Delete</h4></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of libraryService.users | filter: search; index as i" style="color: black">
+            <td>{{user.userId}}</td>
+            <td>{{user.userName}}</td>
+            <td>{{user.userEmail}}</td>
+            <td>{{user.userContactNo}}</td>
+            <td><input type="button" class="btn btn-outline-secondary" value="Update" (click)="updateUser(user)"></td>
+            <td><input type="button" class="btn btn-outline-warning" value="Remove" (click)="removeUser(user)"></td>
+        </tr>
+    </tbody>
+</table>
+ </div>
+</div>

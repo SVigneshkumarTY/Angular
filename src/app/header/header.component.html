@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-sm navbar-light" style="background: lightslategray">
+    <a class="navbar-brand" href="#">TY Library</a>
+    
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+           
+            
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            
+            <button class="btn btn-primary my-2 my-sm-0" *ngIf="!loginService.isUserLoggedIn()" (click)="login()">Login</button>
+            <a class="btn btn-primary" *ngIf="loginService.isUserLoggedIn()" routerLink="/logout">Logout</a>
+           
+          </form>
+         
+       
+    </div>
+</nav>
