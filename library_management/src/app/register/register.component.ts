@@ -8,22 +8,26 @@ import { LibraryServiceService } from '../library-service.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  message='';
   constructor(private libraryService: LibraryServiceService, private router:Router) { }
 
   registerUser(registerform) {
-       this.libraryService.addUser(registerform.value).subscribe(res => {
-        registerform.reset();
-        this.router.navigateByUrl('/viewusers');
-      }, err => {
-        console.log('user not registered.');
-      });
+    if(registerform.value.userId){
+      this.libraryService.updateUser(registerform.value).subscribe(data=>{
+        console.log(data);
+        this.router.navigateByUrl("/viewusers")
+      })
+    }
+    else{
+    this.libraryService.addUser(registerform.value).subscribe(res => {
+      console.log('user registered.');
+      this.message='user registered successfully';
+      
+    }, err => {
+      console.log('user not registered.');
+    });
   }
-
-  navigateAdminHome() {
-  this.router.navigateByUrl('/admin');
-  }
-
+}
   login(){
     this.router.navigateByUrl("/login")
   }

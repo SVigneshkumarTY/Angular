@@ -9,39 +9,33 @@ import { LibraryServiceService } from '../library-service.service';
 })
 export class LibrarianComponent implements OnInit {
 
-  constructor(private router: Router, private libraryService: LibraryServiceService) { }
+  name='';
+  requests:any={};
+  bookRequests:any[]=[];
+  constructor(private router:Router,private service:LibraryServiceService) {
+    this.name=service.userName;
+    this.service.bookrequests().subscribe(data=>{
+     console.log(data);
+     this.requests=data;
+     console.log(this.requests)
+     console.log(this.requests.bookReg)
+     this.bookRequests=this.requests.bookReg;
+    })
+   }
   addBook(){
     this.router.navigateByUrl("/addbooks")
   }
-  send(){
-    this.router.navigateByUrl("/changepwd");
-  }
-  viewBooks() {
-    this.libraryService.getAllBook();
-    console.log(this.libraryService.books);
-    this.router.navigateByUrl('/books');
-  }
-
   books(){
     this.router.navigateByUrl("/books")
   }
-  acceptBookRequest(uId , bId) {
-    this.libraryService.accepBookIssueRequest(uId, bId).subscribe(res => {
-    this.libraryService.studentBookRequest.userId = '';
-    this.libraryService.studentBookRequest.bookId = '';
-    this.libraryService.printMessage = 'Request accepted';
-    this.router.navigateByUrl( '/student');
-    }, err => {
-     console.log(err);
-    });
-  }
 
-  declineBookReq(userId, bookId) {
-    this.libraryService.studentBookRequest.userId = '';
-    this.libraryService.studentBookRequest.bookId = '';
-    this.libraryService.printMessage = 'Request Declined';
-    this.router.navigateByUrl( '/student');
+  acceptReq(reqs){
+    this.service.acceptReq(reqs).subscribe(data=>{
+      console.log(data);
+      alert("you accepted the request")
+    })
   }
+  
 
   ngOnInit() {
     document.body.classList.add('bg-img');

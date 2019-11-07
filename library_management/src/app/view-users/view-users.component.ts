@@ -8,33 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-users.component.css']
 })
 export class ViewUsersComponent implements OnInit {
+  users:any[]=[];
+ 
+  constructor(private service:LibraryServiceService,private router:Router) {
 
-  constructor(private libraryService: LibraryServiceService, private router: Router) { }
+    this.service.viewUsers().subscribe(data=>{
+     console.log(data);
+      this.users=data.users;
+      console.log(this.users)
+    })}
 
-  updateUser(user) {
-    this.libraryService.selectedUser = user;
-    this.router.navigateByUrl('/updateUser');
-  }
-
-  removeUser(user) {
-     console.log(user);
-     this.libraryService.removeUser(user.userId).subscribe(res => {
-       this.libraryService.getAllUsers();
-       this.router.navigateByUrl('/viewusers');
-       console.log('deleted');
-     }, err => {
-         console.log(err);
-     });
-  }
-
-  navigateAdminHome() {
-    this.router.navigateByUrl('/admin');
-  }
+    deleteUser(user){
+      this.service.deleteUser(user.userId).subscribe(data=>{
+        console.log(data);
+      })
+   }
+   updateUser(user){
+    this.service.selectedUser=user;
+    console.log(this.service.selectedUser);
+    this.router.navigateByUrl("/register");
+   }
 
   ngOnInit() {
-     document.body.classList.add('bg-img');
-     this.libraryService.getAllUsers();
-     console.log(this.libraryService.users);
+    // document.body.classList.add('bg-img');
   }
 
 }

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LibraryServiceService } from '../library-service.service';
-import { map } from 'rxjs/operators';
-import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,35 +8,47 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  invalidLogin = false;
-  constructor(private libaryService: LibraryServiceService, private router: Router, private authenticationService: AuthenticationService) { }
-  userLogin(userLoginForm) {
-    this.libaryService.userLogin(userLoginForm.value).pipe(map(resData => {
-      return resData;
-    })).subscribe(data => {
-      this.libaryService.selectedUser = data;
-      localStorage.setItem('reqUserId', this.libaryService.selectedUser.userId);
-      if (this.authenticationService.authenticate(this.libaryService.selectedUser.userEmail)) {
+  msg='';
+ 
 
-        if (this.libaryService.selectedUser.userRole === 'Admin') {
-          this.router.navigateByUrl('/admin');
-        } else if (this.libaryService.selectedUser.userRole === 'Librarian') {
-          this.router.navigateByUrl('/librarian');
-        } else {
-          this.router.navigateByUrl('/student');
-        }
-        this.invalidLogin = false;
-      } else {
-        this.invalidLogin = true;
+  constructor(private libaryService: LibraryServiceService, private router: Router ) { }
+  
+  userLogin(name,password,form) {
+  
+    this.libaryService.userLogin(name,password).subscribe(res=>{
+
+      console.log(res);
+      console.log(res.users[0].userRole)
+      if(res.users !== null){
+      if(res.users[0].userRole==='Admin'){
+        this.libaryService.userName=res.users[0].userName;
+        this.router.navigateByUrl("/admin");
       }
-    }, err => {
-      this.libaryService.printMessage = 'Invalid User and Password';
-      setTimeout(() => {
-        this.libaryService.printMessage = '';
-      }, 5000);
-      this.router.navigateByUrl('/login');
+      else if(res.users[0].userRole==='Librarian'){
+        this.libaryService.userName=res.users[0].userName;
+        this.router.navigateByUrl("/librarian");
+      }
+      else if(res.users[0].userRole==='Student'){
+        this.libaryService.userName=res.users[0].userName;
+        this.libaryService.userId=res.users[0].userId;
+        this.router.navigateByUrl("/student");
+      }
+      else if(res.users===null){
+        this.router.navigateByUrl("/login");
+      }
+      else{
+        this.router.navigateByUrl("/login");
+      }
+    }else{
+      this.router.navigateByUrl("/login");
+    }
+   
+    },err=> {
+          this.msg='Invalid Credentials';
     });
+    
   }
+
   ngOnInit() {
     document.body.classList.add('bg-img');
   }

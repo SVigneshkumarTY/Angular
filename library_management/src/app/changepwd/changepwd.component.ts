@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LibraryServiceService } from '../library-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-changepwd',
@@ -9,16 +9,14 @@ import { LibraryServiceService } from '../library-service.service';
 })
 export class ChangepwdComponent implements OnInit {
 msg='';
-  constructor(private router:Router,private service:LibraryServiceService) { }
+  constructor(private service:LibraryServiceService,private router:Router) { }
 
   changepwd(data){
-    this.service.changepassword(data.userId,data.userPassword,data.newPassword).subscribe(data=>{
+    this.service.changepassword(data.userEmail,data.userPassword,data.newPassword).subscribe(data=>{
       console.log(data);
-      if(data===true){
-      this.msg='password changed successfully'
-      }else{
-        this.msg='Invalid Id Or Password'
-      }
+      alert("Password Changed")
+      this.router.navigateByUrl("/student");
+      
     },err=>{
       
     })

@@ -1,59 +1,34 @@
-
-<div class="container-fluid mt-5">
-        
+<h3 style="color:green;text-align:center">{{message}}</h3>
+<div class="container-fluid mt-3">
         <div class="row">
-            <div class="col-md-4">
-                    <input type="button" class="btn btn-success" style="margin-right: 75px;margin-bottom: 30px" value="Admin Home" (click)="navigateAdminHome()">
-            </div>
-            
+            <div class="col-md-4"></div>
             <div class="col-md-4">
                     <form action="" method="POST" #registerform='ngForm' (ngSubmit)='registerUser(registerform)' class="form-container" role="form">
-                            <h1 style="text-align: center;color: orangered"> Add User!!</h1>
+                            <h1 style="text-align: center;color: orange;background: black;"> Add User!!</h1>
+                            <!-- <div class="form-group">
+                                <input type="email" name='email' #email='ngModel' ngModel  class="form-control" placeholder="Enter Email Here">
+                            </div> -->
+                            <div class="form-group">
+                                <input type="hidden" name='userId' #userId='ngModel' [(ngModel)]='libraryService.selectedUser.userId'  class="form-control" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name='userName' #userName='ngModel' [(ngModel)]='libraryService.selectedUser.userName'  class="form-control" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name='userEmail' #userEmail='ngModel' [(ngModel)]='libraryService.selectedUser.userEmail'  class="form-control" placeholder="Enter Email">
+                            </div>
+                            
                             
                             <div class="form-group">
-                                <input type="text" name='userName' #userName='ngModel' ngModel  class="form-control" placeholder="Enter Name" required>
-                                <div *ngIf="userName.touched && userName.invalid">
-                                     <p class="text-danger" *ngIf="userName.errors.required">UserName Requared</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name='userEmail' #userEmail='ngModel' ngModel  class="form-control" placeholder="Enter Email" required email>
-                                <div *ngIf="userEmail.touched && userEmail.invalid">
-                                    <p class="text-danger" *ngIf="userEmail.errors.required">Email Requared</p>
-                                    <p class="text-danger" *ngIf="userEmail.errors.email">Only Email Allowed</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name='userPassword' #userPassword='ngModel' ngModel  class="form-control" placeholder="Enter Password Here" required minlength="6">
-                                <div *ngIf="userPassword.touched && userPassword.invalid">
-                                    <p class="text-danger" *ngIf="userPassword.errors.required">Password Requared</p>
-                                    <p class="text-danger" *ngIf="userPassword.errors.minlength">Password must be 6 digits</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="number" name='userContactNo' #userContactNo='ngModel' ngModel  class="form-control" placeholder="Enter Contact No" required maxlength="12">
-                                <div *ngIf="userContactNo.touched && userContactNo.invalid">
-                                    <p class="text-danger" *ngIf="userContactNo.errors.required">ContactNo Required</p>
-                                </div>
-                            </div>
-                        
-                            <div class="form-group" >
-                                <select  name='userRole' #userRole='ngModel' ngModel class="form-control" placeholder="Select User Role">
-                                    <option value="admin">admin</option>
-                                    <option value="librarian">librarian</option>
-                                    <option value="student">student</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                Gender
-                                <input type="radio" name='userGender' #userGender='ngModel' ngModel value="Male" checked>Male
-                                <input type="radio" name='userGender' #userGender='ngModel' ngModel value="Female">Female
+                                <h4 style="color: tomato;background: white;">Role:</h4>
+                                    <input type="radio" name='userRole' #userRole='ngModel' [(ngModel)]='libraryService.selectedUser.userRole' value="Admin">Admin
+                                    <input type="radio" name='userRole' #userRole='ngModel' [(ngModel)]='libraryService.selectedUser.userRole' value="Librarian">Librarian
+                                    <input type="radio" name='userRole' #userRole='ngModel' [(ngModel)]='libraryService.selectedUser.userRole' value="Student">Student
                             </div>
 
                             <div class="form-group">
                                 <button type="reset" class="btn btn-warning col-md-6 form-control">Reset</button>
-                                <button type="submit" class="btn btn-success col-md-6 form-control float-right" [disabled]='registerform.invalid'>Add User</button>
+                                <button type="submit" class="btn btn-success col-md-6 form-control float-right">Add User</button>
                             </div>
                         </form>
             </div>

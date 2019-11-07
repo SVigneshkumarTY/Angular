@@ -27,11 +27,12 @@
                         placeholder="Enter Contact No">
                 </div>
                 <div class="form-group">
+                    User Role:
                     <select name='userRole' #userRole='ngModel' [(ngModel)]="libraryService.selectedUser.userRole"
                         class="form-control" placeholder="Select User Role">
-                        <option value="admin">admin</option>
-                        <option value="librarian">librarian</option>
-                        <option value="student">student</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Librarian">Librarian</option>
+                        <option value="Student">Student</option>
                     </select>
                 </div>
 

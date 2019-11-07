@@ -8,21 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./addbooks.component.css']
 })
 export class AddbooksComponent implements OnInit {
-
-  constructor(private libraryService: LibraryServiceService, private router: Router) { }
+  msg='';
+  constructor(private libraryService: LibraryServiceService,private router:Router) { }
 
   addBook(bookform) {
+     console.log(bookform.value);
+     if(bookform.value.bookId){
+       this.libraryService.updateBook(bookform.value).subscribe(data=>{
+         console.log(data);
+       })
+       this.router.navigateByUrl("/books");
+     }
+     else{
      this.libraryService.addBook(bookform.value).subscribe(res => {
-      bookform.reset();
-      this.router.navigateByUrl('/books');
+        console.log('book added successfully');
+        this.router.navigateByUrl("/books")
+        //this.msg='Book Added Successfully';
+        bookform.reset();
      }, err => {
         console.log('book not added');
      });
   }
-
-  librarianHomePage() {
-    this.router.navigateByUrl('/librarian');
-  }
+}
 
   ngOnInit() {
     document.body.classList.add('bg-img');

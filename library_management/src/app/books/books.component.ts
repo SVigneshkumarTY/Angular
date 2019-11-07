@@ -8,27 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  books:any[]=[];
+  constructor(private service:LibraryServiceService,private router:Router) { 
+    this.service.viewBooks().subscribe(data=>{
+      console.log(data);
+      this.books=data.books;
+  })
+}
+deleteBook(book){
+  this.service.deleteBook(book.bookId).subscribe(data=>{
+    console.log(data);
+  })
+}
 
-  constructor(private libraryService: LibraryServiceService, private router: Router ) { }
-  updateBook(book) {
-    this.libraryService.selectedBook = book;
-    this.router.navigateByUrl('/updateBook');
-  }
+updateBook(book){
+  this.service.selectedBook=book;
+  this.router.navigateByUrl("/addbooks")
+}
 
-  deleteBook(book) {
-    this.libraryService.removeBook(book.bookId).subscribe(res => {
-      this.libraryService.getAllBook();
-      this.router.navigateByUrl('/books');
-    }, err => {
-      console.log('not deleted');
-    });
-  }
-
-  librarianHomePage() {
-    this.router.navigateByUrl('/librarian');
-  }
   ngOnInit() {
-    this.libraryService.getAllBook();
     document.body.classList.add('bg-img');
   }
 

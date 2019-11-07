@@ -9,28 +9,30 @@ import { LibraryServiceService } from '../library-service.service';
 })
 export class StudentComponent implements OnInit {
 
-  constructor(private libraryService: LibraryServiceService, private router: Router) { 
-    setTimeout(() => {
-      libraryService.printMessage = '';
-    } , 5000);
+  books:any[]=[];
+  name='';
+  constructor(private service:LibraryServiceService,private router:Router) { 
+    this.service.viewBooks().subscribe(data=>{
+      console.log(data);
+      this.books=data.books;
+      this.name=service.userName;
+  })
+}
+
+  viewBooks(){
+    this.service.userBooks().subscribe(data=>{
+      console.log(data);
+    })
   }
 
-  send(){
-    this.router.navigateByUrl("/changepwd");
+  sendRequest(book){
+    console.log(book);
+    this.service.requestBook(book).subscribe(data=>{
+      console.log(data);
+    })
   }
 
-  viewBooks() {
-    this.router.navigate(["/viewbooks"]);
-  }
-
-  requestForBook(book) {
-    this.libraryService.selectedBook = book;
-    this.libraryService.studentBookRequest.userId = localStorage.getItem('reqUserId');
-    this.libraryService.studentBookRequest.bookId = this.libraryService.selectedBook.bookId;
-    this.router.navigateByUrl('/librarian');
-  }
   ngOnInit() {
-    this.libraryService.getAllBook();
     document.body.classList.add('bg-img');
   }
 

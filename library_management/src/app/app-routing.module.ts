@@ -10,9 +10,6 @@ import { StudentComponent } from './student/student.component';
 import { LibrarianComponent } from './librarian/librarian.component';
 import { AddbooksComponent } from './addbooks/addbooks.component';
 import { BooksComponent } from './books/books.component';
-import { UpdateBookComponent } from './update-book/update-book.component';
-import { UpdateUserComponent } from './update-user/update-user.component';
-import { LogoutComponent } from './logout/logout.component';
 import { ChangepwdComponent } from './changepwd/changepwd.component';
 
 
@@ -27,11 +24,7 @@ const routes: Routes = [
   {path: 'librarian', component: LibrarianComponent},
   {path: 'addbooks', component: AddbooksComponent},
   {path: 'books', component: BooksComponent},
-  {path: 'updateBook', component: UpdateBookComponent},
-  {path: 'updateUser', component: UpdateUserComponent},
-  {path: 'logout' , component: LogoutComponent},
-  {path:'changepwd',component:ChangepwdComponent}
-
+  {path: 'changepwd',component:ChangepwdComponent}
 ];
 
 @NgModule({

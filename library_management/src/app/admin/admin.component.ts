@@ -8,21 +8,15 @@ import { LibraryServiceService } from '../library-service.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  constructor(private libraryService: LibraryServiceService, private router: Router) { }
-  addUser() {
-    this.router.navigateByUrl('/register');
+  name='';
+  constructor(private router:Router,private service:LibraryServiceService) {
+    this.name=service.userName;
+   }
+  addUser(){
+    this.router.navigateByUrl("/register");
   }
-  send(){
-    this.router.navigateByUrl("/changepwd");
-  }
-  viewUsers() {
-    //this.libraryService.getAllUsers();
-    this.router.navigateByUrl('/viewusers');
-  }
-  searchByName(userName) {
-    this.libraryService.searchByName(userName.value);
-    userName.reset();
+  viewUsers(){
+    this.router.navigateByUrl("/viewusers");
   }
 
   ngOnInit() {
