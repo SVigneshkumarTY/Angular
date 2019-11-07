@@ -1,0 +1,30 @@
+
+<button class="btn btn-primary float-right" style="margin-right: 275px;margin-top: 30px;margin-bottom:30px" (click)="navigateStudentHome()">Student Home</button>
+
+ 
+<div class="col-md-6 offset-md-3 mt-3 card card-body">
+<input type="search"  class="form-control" [(ngModel)]='search' placeholder="Search Book Name">     
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Book Id</th>
+            <th>Book Name</th>
+            <th>Issued Date</th>
+            <th>Return</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of libraryService.issueBookList | filter: search;index as i" style="color: blueviolet">
+            <td>{{i+1}}</td>
+            <td>{{book.bookId }}</td>
+            <td>{{book.bookName | titlecase}}</td>
+            <td>{{book.issueDate | date | uppercase}}</td>
+            <td>
+                <button class="btn btn-warning" (click)="returnBook(book)">Return</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
