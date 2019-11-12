@@ -8,24 +8,33 @@ import { LibraryServiceService } from '../library-service.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  message='';
   constructor(private libraryService: LibraryServiceService, private router:Router) { }
 
   registerUser(registerform) {
-       this.libraryService.addUser(registerform.value).subscribe(res => {
-        registerform.reset();
-        this.router.navigateByUrl('/viewusers');
-      }, err => {
-        console.log('user not registered.');
-      });
+    if(confirm('Confirm to Add This User...?')){
+    this.libraryService.addUser(registerform.value).subscribe(res => {
+      console.log('user registered.');
+      registerform.reset();
+      alert('User Added Successfully')
+      this.message='user registered successfully';
+      this.router.navigateByUrl("/admin");
+      
+    }, err => {
+      console.log('user not registered.');
+    });
+  }else{
+    registerform.reset();
+    alert('User Not Added..!')
+    this.router.navigateByUrl("/admin")
   }
-
-  navigateAdminHome() {
-  this.router.navigateByUrl('/admin');
   }
 
   login(){
     this.router.navigateByUrl("/login")
+  }
+  goHome(){
+    this.router.navigateByUrl("/admin");
   }
 
   ngOnInit() {

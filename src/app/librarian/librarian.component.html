@@ -1,29 +1,31 @@
-
+<marquee behavior="" direction=""><h1 style="color:red;font-family:cursive;">Welcome {{name | uppercase}}...!, Have a good day!!</h1></marquee>
+<button class="btn btn-danger mt-5 float-right mr-5" (click)='changepwd()'>Change Password</button>
 <div class="float-left">
 <table class="table table-striped table-inverse table-responsive mt-5 ">
-    <h1 style="color: white;" >Students Request </h1>
-    <thead class="thead-inverse bg-dark">
+    <h1 style="font-family: fantasy;background: white;text-align: center;" >Students Request </h1>
+    <thead class="thead-inverse bg-light">
         <tr>
-            <!-- <th style="color: wheat;">Index</th> -->
-            <th style="color: wheat;">User Id</th>
-            <th style="color: wheat;">Book Id</th>
-            <th style="color: wheat;">Accept</th>
-            <th style="color: wheat;">Decline</th>
+            
+            <th>User Id</th>
+            <th>Book Id</th>
+            <th>Reg Date</th>
+            <th>Accept</th>
+            <th>Decline</th>
         </tr>
         </thead>
-        <tbody class="bg-dark">
-            <tr>
-                <!-- <td scope="row" style="color:lightblue"></td> -->
-                <td style="color:lightblue">{{libraryService.studentBookRequest.userId}}</td>
-                <td style="color:lightblue">{{libraryService.studentBookRequest.bookId}}</td>
-                <td><button class="btn btn-success" (click)="acceptBookRequest(libraryService.studentBookRequest.userId,libraryService.studentBookRequest.bookId)">Accept</button></td>
-                <td><button class="btn btn-danger" (click)="declineBookReq(libraryService.studentBookRequest.userId,libraryService.studentBookRequest.bookId)">Decline</button></td>
+        <tbody class="bg-light">
+            <tr *ngFor='let reqs of bookRequests'>
+                <td>{{reqs.userId}}</td>
+                <td>{{reqs.bookId}}</td>
+                <td>{{reqs.regDate}}</td>
+                <td><button class="btn btn-dark"(click)='acceptReq(reqs)'>Accept</button></td>
+                <td><button class="btn btn-info" (click)='decline(reqs)'>Decline</button></td>
             </tr>
             
         </tbody>
 </table>
 </div>
 <div class="float-left mt-5 " style="margin-left: 500px;">
-    <button class="btn btn-warning" (click)='addBook()'>Add Books</button><br>
-    <button class="mt-5 btn btn-warning" (click)="viewBooks()">View Books</button>
+    <button class="btn btn-dark btn-lg" (click)='addBook()'>Add Books</button><br>
+    <button class="mt-5 btn btn-dark btn-lg" (click)="books()">View Books</button>
 </div>

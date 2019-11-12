@@ -1,52 +1,40 @@
-<div class="container mt-2">
-    <h1 style="color: red;font-family: fantasy;text-align: center;" class="mt-3">Welcome Admin!!</h1>
-    <div class="row">
-        <div class="col-md-3">
-            <button class="btn btn-warning btn-lg mt-5 ml-5"(click)='addUser()'>Add Users</button>
-            <br>
-            <button class="btn btn-warning btn-lg mt-5 ml-5"(click)='viewUsers()'>View Users</button>
-            <br>
-        </div>
 
-        <!-- <div class="col-md-9">
-            <div class="form-group">
-                    <input type="search" name = "search" class="form-control" [(ngModel)]='search' placeholder="Search User Name"> 
-                 <input type="text" name="userName" #userName='ngModel' [(ngModel)]='search' ngModel class="form-control" placeholder="Enter name to search" name="search"> 
-                <button class="btn btn-primary float-right mt-2 mb-2" (click)="searchByName(userName)">Search</button>
-            </div>
-            <div  class="card card-body mt-3"   *ngIf="libraryService.searchUsers.length>0">
-                <table class="table table-bodered">
-                    <thead>
-                        <tr>
-                        <th>UserId</th>
-                        <th>UserName</th>
-                        <th>Email</th>
-                        <th>Phone No</th>
+<marquee behavior="" direction=""><h1 style="color:red;font-family: cursive;" class="mt-3">Welcome {{name | uppercase}}...!, Have a Good Day!!</h1></marquee>
+<div class="float-left">
+<button class="btn btn-dark btn-lg mt-5 ml-5" (click)='addUser()'>Add User</button>
+<br>
+<button class="btn btn-dark btn-lg mt-5 ml-5" (click)='viewUsers()'>View Users</button>
+<br>
+</div>
+<div class="float-left mt-5" style="margin-left: 700px;">
+    <input type="search" class="form-control"  [(ngModel)]='search' placeholder="Search Users"><br>
+    <button class="float-right btn btn-danger btn-md" (click)='show2()'>cancel</button>
+    <button class="float-right btn btn-dark btn-md" (click)='show1()'> Search</button>
+</div>
+<div class="float-left" *ngIf='show'>
+        <table class="table table-striped table-inverse table-responsive mt-3 " style="margin-left: 180px;">
+            <thead class="thead-inverse bg-light">
+                    <tr>
+                            <th>user Id</th>
+                            <th>user Name</th>
+                            <th>user Email</th>
+                            
+                            <th>userRole</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                         </tr>
-                    </thead> -->
-                    <!-- <div  class="card card-body mt-3"   *ngIf="libraryService.searchUsers.length>0"> -->
-
-                    <!-- <table class="table table-bodered table-hover">
-                            <thead>
-                                <tr>
-                                    <th style="color: orangered;"><h4>User Id</h4></th>
-                                    <th style="color: orangered;"><h4>User Name</h4></th>
-                                    <th style="color: orangered;"><h4>User Email</h4></th>
-                                    <th style="color: orangered;"><h4>Contact No</h4></th>
-                                    
-                                </tr>
-                            </thead>
-                    <tbody>
-                        <tr *ngFor="let user of libraryService.users | filter3: search" style="color: black">
-                            <td>{{user.userId}}</td>
-                            <td>{{user.userName}}</td>
-                            <td>{{user.userEmail}}</td>
-                            <td>{{user.userContactNo}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                </thead>
+                <tbody class="bg-light">
+                        <tr *ngFor='let user of users | filter2:search'>
+                                <td scope="row">{{user.userId}}</td>
+                                <td>{{user.userName}}</td>
+                                <td>{{user.userEmail}}</td>
+                                
+                                <td>{{user.userRole}}</td>
+                                <td><button class="btn btn-warning" (click)='updateUser(user)'>Update</button></td>
+                                <td><button class="btn btn-danger" (click)='deleteUser(user)'>Delete</button></td>
+                            </tr>
+                </tbody>
+        </table>
         </div>
-    </div>  -->
-</div>
-</div>
+<!-- <button class="btn btn-warning btn-lg mt-5 ml-5">Search Users</button> -->

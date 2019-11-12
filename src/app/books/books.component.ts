@@ -8,27 +8,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  books:any[]=[];
+  constructor(private service:LibraryServiceService,private router:Router) { 
+    this.service.viewBooks().subscribe(data=>{
+      console.log(data);
+      this.books=data.books;
+  })
+}
+deleteBook(book){
+  if(confirm('This Book Will Be Deleted')){
+  this.service.deleteBook(book.bookId).subscribe(data=>{
+    console.log(data);
+    alert('Book Deleted Successfully')
+  })
+}else{
+  alert('Book Not Deleted')
+}
+}
+goHome(){
+  if(this.service.selectedUser.userRole==='Student'){
+    this.router.navigateByUrl("/student");
+    }else if(this.service.selectedUser.userRole==='Librarian'){
+      this.router.navigateByUrl("/librarian");
+    }
+}
 
-  constructor(private libraryService: LibraryServiceService, private router: Router ) { }
-  updateBook(book) {
-    this.libraryService.selectedBook = book;
-    this.router.navigateByUrl('/updateBook');
-  }
+updateBook(book){
+  this.service.selectedBook=book;
+  this.router.navigateByUrl("/updatebook")
+}
 
-  deleteBook(book) {
-    this.libraryService.removeBook(book.bookId).subscribe(res => {
-      this.libraryService.getAllBook();
-      this.router.navigateByUrl('/books');
-    }, err => {
-      console.log('not deleted');
-    });
-  }
-
-  librarianHomePage() {
-    this.router.navigateByUrl('/librarian');
-  }
   ngOnInit() {
-    this.libraryService.getAllBook();
     document.body.classList.add('bg-img');
   }
 

@@ -4,32 +4,32 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                     <form action="" method="POST" #registerform='ngForm' (ngSubmit)='registerUser(registerform)' class="form-container" role="form">
-                            <h1 style="text-align: center;color: black;font-family: fantasy;"> Add User!!</h1>
+                            <h1 style="text-align: center;color: black;font-family: fantasy;"> Update User!!</h1>
                             <!-- <div class="form-group">
                                 <input type="email" name='email' #email='ngModel' ngModel  class="form-control" placeholder="Enter Email Here">
                             </div> -->
                             <div class="form-group">
-                                <input type="hidden" name='userId' #userId='ngModel' ngModel  class="form-control" placeholder="Enter Name">
+                                <input type="hidden" name='userId' #userId='ngModel' [(ngModel)]='libraryService.selectedUser.userId'  class="form-control" placeholder="Enter Name">
                             </div>
                             <div class="form-group">
-                                <input type="text" name='userName' #userName='ngModel' ngModel  class="form-control" placeholder="Enter Name">
+                                <input type="text" name='userName' #userName='ngModel' [(ngModel)]='libraryService.selectedUser.userName'  class="form-control" placeholder="Enter Name">
                             </div>
                             <div class="form-group">
-                                <input type="text" name='userEmail' #userEmail='ngModel' ngModel class="form-control" placeholder="Enter Email">
+                                <input type="text" name='userEmail' #userEmail='ngModel' [(ngModel)]='libraryService.selectedUser.userEmail'  class="form-control" placeholder="Enter Email">
                             </div>
                             
                             
                             <div class="form-group">
                                 <h4 style="color: black">Role:</h4>
-                                    <input type="radio" name='userRole' #userRole='ngModel' ngModel value="Admin">Admin
-                                    <input type="radio" name='userRole' #userRole='ngModel' ngModel value="Librarian">Librarian
-                                    <input type="radio" name='userRole' #userRole='ngModel' ngModel value="Student">Student
+                                    <input type="radio" name='userRole' #userRole='ngModel' [(ngModel)]='libraryService.selectedUser.userRole' value="Admin">Admin
+                                    <input type="radio" name='userRole' #userRole='ngModel' [(ngModel)]='libraryService.selectedUser.userRole' value="Librarian">Librarian
+                                    <input type="radio" name='userRole' #userRole='ngModel' [(ngModel)]='libraryService.selectedUser.userRole' value="Student">Student
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <button type="reset" class="btn btn-dark col-md-6 form-control">Reset</button>
-                                <button type="submit" class="btn btn-primary col-md-6 form-control float-right">Add User</button>
+                                <button type="submit" class="btn btn-primary col-md-6 form-control float-right">Update</button>
                             </div>
                         </form>
             </div>

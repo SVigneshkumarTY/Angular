@@ -1,0 +1,25 @@
+<button class="btn btn-primary float-right mt-5 mr-5" (click)='goHome()'>Home</button>
+<div class="float-left">
+<table class="table table-striped table-inverse table-responsive mt-5" style="margin-left: 100px;">
+        <h1 style="color: blue;font-family: fantasy;">Allocated Books</h1>
+    <thead class="thead-inverse table-light">
+        <tr>
+            <th>Book Id</th>
+            <th>Book Name</th>
+            <th>Issued Date</th>
+            <th>Return Date</th>
+            <th>Return</th>
+        </tr>
+        </thead>
+        <tbody class="table-light">
+            <tr *ngFor='let books of service.allBooks'>
+                <td scope="row">{{books.bookId}}</td>
+                <td>{{books.bookName}}</td>
+                <td>{{books.issuedDate}}</td>
+                <td>{{books.returnDate}}</td>
+                <td><button class="btn btn-dark" (click)='return(books)'>Return</button></td>
+            </tr>
+            
+        </tbody>
+</table>
+</div>

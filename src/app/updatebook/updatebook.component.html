@@ -1,0 +1,39 @@
+<button class="btn btn-primary float-right mt-5 mr-5" (click)='goHome()'>Home</button>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+                <form action="" #bookform='ngForm' (ngSubmit)='addBook(bookform)' class="form-container">
+                        <h1 style="text-align: center;color:blue;font-family: fantasy; "> Update Book!!</h1><br>
+                        <div class="form-group">
+                            <input type="hidden" name='bookId' #bookid='ngModel' [(ngModel)]='libraryService.selectedBook.bookId'  class="form-control" placeholder="Enter Book Id Here">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name='bookName' #bookName='ngModel' [(ngModel)]='libraryService.selectedBook.bookName'  class="form-control" placeholder="Enter Book Name Here">
+                        </div>
+                        <div class="form-group">
+                                <input type="text" name='author1' #author1='ngModel' [(ngModel)]='libraryService.selectedBook.author1'  class="form-control" placeholder="Enter Author 1 Name Here">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name='author2' #author2='ngModel' [(ngModel)]='libraryService.selectedBook.author2'  class="form-control" placeholder="Enter Author 2 Name Here">
+                            </div>
+                            <div class="form-group">
+                                    <input type="text" name='publisher' #publisher='ngModel' [(ngModel)]='libraryService.selectedBook.publisher'  class="form-control" placeholder="Enter Publisher Here">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" name='yearOfPublication' #yearOfPublication='ngModel' [(ngModel)]='libraryService.selectedBook.yearOfPublication'  class="form-control" placeholder="Enter yearOfPublication Here">
+                                </div>
+                               
+                        <div class="form-group">
+                            <button type="reset" class="btn btn-info col-md-6 form-control">Reset</button>
+                            <button type="submit" class="btn btn-dark col-md-6 form-control float-right">Update</button>
+                        </div>
+                        <div class="form-group">
+                            <h5 style="color:green;text-align: center;">{{msg}}</h5>
+                        </div>
+                    </form>
+        </div>
+
+    </div>
+</div>
+

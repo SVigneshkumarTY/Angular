@@ -10,10 +10,10 @@ import { StudentComponent } from './student/student.component';
 import { LibrarianComponent } from './librarian/librarian.component';
 import { AddbooksComponent } from './addbooks/addbooks.component';
 import { BooksComponent } from './books/books.component';
-import { UpdateBookComponent } from './update-book/update-book.component';
-import { UpdateUserComponent } from './update-user/update-user.component';
-import { LogoutComponent } from './logout/logout.component';
-import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ChangepwdComponent } from './changepwd/changepwd.component';
+import { AllocatedBooksComponent } from './allocated-books/allocated-books.component';
+import { UpdatebookComponent } from './updatebook/updatebook.component';
+import { UpdateuserComponent } from './updateuser/updateuser.component';
 
 
 const routes: Routes = [
@@ -27,11 +27,10 @@ const routes: Routes = [
   {path: 'librarian', component: LibrarianComponent},
   {path: 'addbooks', component: AddbooksComponent},
   {path: 'books', component: BooksComponent},
-  {path: 'updateBook', component: UpdateBookComponent},
-  {path: 'updateUser', component: UpdateUserComponent},
-  {path: 'logout' , component: LogoutComponent},
-  {path: 'changepassword' , component: ChangepasswordComponent}
-
+  {path: 'changepwd',component:ChangepwdComponent},
+  {path:'allocatedBooks',component:AllocatedBooksComponent},
+  {path:'updatebook',component:UpdatebookComponent},
+  {path:'update' ,component:UpdateuserComponent}
 ];
 
 @NgModule({

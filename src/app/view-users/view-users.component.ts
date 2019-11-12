@@ -8,33 +8,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-users.component.css']
 })
 export class ViewUsersComponent implements OnInit {
+  users:any[]=[];
+ 
+  constructor(private service:LibraryServiceService,private router:Router) {
 
-  constructor(private libraryService: LibraryServiceService, private router: Router) { }
-
-  updateUser(user) {
-    this.libraryService.selectedUser = user;
-    this.router.navigateByUrl('/updateUser');
+    this.service.viewUsers().subscribe(data=>{
+     console.log(data);
+      this.users=data.users;
+      console.log(this.users)
+    })
+  }
+  goHome(){
+    this.router.navigateByUrl("/admin");
   }
 
-  removeUser(user) {
-     console.log(user);
-     this.libraryService.removeUser(user.userId).subscribe(res => {
-       this.libraryService.getAllUsers();
-       this.router.navigateByUrl('/viewusers');
-       console.log('deleted');
-     }, err => {
-         console.log(err);
-     });
+  deleteUser(user){
+    if(confirm('This User Will Be Deleted')){
+   this.service.deleteUser(user.userId).subscribe(data=>{
+     console.log(data);
+     alert('User Deleted')
+   })
+ }else{
+   alert('User Not Deleted')
+ }
   }
-
-  navigateAdminHome() {
-    this.router.navigateByUrl('/admin');
-  }
+   updateUser(user){
+    this.service.selectedUser=user;
+    console.log(this.service.selectedUser);
+    this.router.navigateByUrl("/update");
+   }
 
   ngOnInit() {
-     document.body.classList.add('bg-img');
-     this.libraryService.getAllUsers();
-     console.log(this.libraryService.users);
+    document.body.classList.add('bg-img');
   }
 
 }

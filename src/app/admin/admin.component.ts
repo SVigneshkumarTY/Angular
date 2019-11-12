@@ -8,24 +8,48 @@ import { LibraryServiceService } from '../library-service.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  constructor(private libraryService: LibraryServiceService, private router: Router) { }
-  addUser() {
-    this.router.navigateByUrl('/register');
+  show=false;
+  name='';
+  users:any[]=[];
+  constructor(private router:Router,private service:LibraryServiceService) {
+    this.name=service.userName;
+    
+    this.service.viewUsers().subscribe(data=>{
+      console.log(data);
+       this.users=data.users;
+       console.log(this.users)
+     })
+   }
+   updateUser(user){
+    this.service.selectedUser=user;
+    console.log(this.service.selectedUser);
+    this.router.navigateByUrl("/update");
+   }
+   deleteUser(user){
+     if(confirm('This User Will Be Deleted')){
+    this.service.deleteUser(user.userId).subscribe(data=>{
+      console.log(data);
+      alert('User Deleted')
+    })
+  }else{
+    alert('User Not Deleted')
   }
-  viewUsers() {
-    //this.libraryService.getAllUsers();
-    this.router.navigateByUrl('/viewusers');
+ }
+   show1(){
+     this.show=true;
+   }
+   show2(){
+    this.show=false;
   }
-  // searchByName(userName) {
-  //   this.libraryService.searchByName(userName.value);
-  //   userName.reset();
-  // }
+  addUser(){
+    this.router.navigateByUrl("/register");
+  }
+  viewUsers(){
+    this.router.navigateByUrl("/viewusers");
+  }
 
   ngOnInit() {
     document.body.classList.add('bg-img');
-    //   this.libraryService.getAllUsers();
-    // console.log(this.libraryService.users);
   }
 
 }

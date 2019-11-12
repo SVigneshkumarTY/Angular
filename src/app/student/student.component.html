@@ -1,27 +1,36 @@
-<h1 style="text-align: center;color: red;font-family: fantasy;" class="mt-2">Welcome Student!!</h1>
-<button class="btn btn-primary mt-3" (click)='viewBooks()'>Click Here to See Allocated Books</button>
-<a href= '/changepassword' class="offset-md-8">Change Password</a>
-<h3 style="color: chartreuse; float: right;">{{libraryService.printMessage}}</h3>
-<h2 style="margin-left: 190px;color:floralwhite">Available Books</h2>
-<div class="col-md-8 offset-md-2 card card-body mt-2">
-    <table class="table table-hover mt-3">
-        <thead class="bg-dark">
-            <tr>
-                <th style="color: orange;">Book Id</th>
-                <th style="color: orange;">Book Name</th>
-                <th style="color: orange;">Author</th>
-                <th style="color: orange;">Category</th>
-                <th style="color:orange;">Request</th>
-            </tr>
+    <marquee behavior="" direction=""><h1 style="font-family: cursive;color:red" class="mt-2">Welcome {{name | uppercase}}...!,Have a Good Day!!</h1></marquee>
+   
+    <button class="btn btn-danger mt-5 float-right mr-5"  (click)='changepwd()'>Change Password</button>
+    <button class="btn btn-primary float-right mt-5 mr-5" (click)='viewBooks()'>Allocated Books</button>
+
+    
+<div class="float-left">
+<table class="table table-striped table-inverse table-responsive mt-5 ml-2">
+    <h1 style="font-family: fantasy;;text-align: center;">Available Books List</h1><br>
+    <input type="search"  class="form-control" [(ngModel)]='search' placeholder="Search Book Name"> <br>
+    <thead class="thead-inverse bg-light">
+        <tr>
+            <th>Book Id</th>
+            <th>Book Name</th>
+            <th>Author1</th>
+            <th>Author2</th>
+            <th>Publisher</th>
+            <th>Year Of Publication</th>
+            <th>Request</th>
+            
+        </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let book of this.libraryService.books">
-                <td>{{book.bookId}}</td>
+        <tbody class="bg-light">
+            <tr *ngFor='let book of books | filter:search'>
+                <td scope="row">{{book.bookId}}</td>
                 <td>{{book.bookName}}</td>
-                <td>{{book.authorName}}</td>
-                <td>{{book.category}}</td>
-                <td><button class="btn btn-success" (click)="requestForBook(book)">Request</button></td>
+                <td>{{book.author1}}</td>
+                <td>{{book.author2}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.yearOfPublication}}</td>
+                <td><button  class="btn btn-dark" (click)='sendRequest(book)'>Request</button></td>
             </tr>
         </tbody>
-    </table>
+</table>
 </div>
+

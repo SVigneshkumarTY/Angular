@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class Filter2Pipe implements PipeTransform {
 
- transform(users: any[], searchValue: string ): any[] {
+  transform(users: any[], searchValue: string ): any[] {
     
     if(searchValue === undefined){
       return users;
@@ -19,3 +19,25 @@ export class Filter2Pipe implements PipeTransform {
   }
 
 }
+
+// import { Pipe, PipeTransform } from '@angular/core';
+
+// @Pipe({
+//   name: 'filter2'
+// })
+// export class Filter2Pipe implements PipeTransform {
+
+//  transform(users: any[], searchValue: string ): any[] {
+    
+//     if(searchValue === undefined){
+//       return users;
+//     }else{
+//       return users.filter(data => {
+//        return data.userName.toLowerCase().includes( searchValue.toLowerCase())  ;
+//     });
+
+//   }
+
+//   }
+
+// }

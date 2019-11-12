@@ -18,13 +18,12 @@ import { ViewbooksComponent } from './viewbooks/viewbooks.component';
 import { AddbooksComponent } from './addbooks/addbooks.component';
 import { BooksComponent } from './books/books.component';
 import {HttpClientModule} from '@angular/common/http';
-import { UpdateBookComponent } from './update-book/update-book.component';
-import { UpdateUserComponent } from './update-user/update-user.component';
-import { LogoutComponent } from './logout/logout.component';
-import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ChangepwdComponent } from './changepwd/changepwd.component';
+import { AllocatedBooksComponent } from './allocated-books/allocated-books.component';
+import { UpdatebookComponent } from './updatebook/updatebook.component';
 import { FilterPipe } from './filter.pipe';
 import { Filter2Pipe } from './filter2.pipe';
-import { Filter3Pipe } from './filter3.pipe';
+import { UpdateuserComponent } from './updateuser/updateuser.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +39,13 @@ import { Filter3Pipe } from './filter3.pipe';
     ViewbooksComponent,
     AddbooksComponent,
     BooksComponent,
-    UpdateBookComponent,
-    UpdateUserComponent,
-    LogoutComponent,
-    ChangepasswordComponent,
+    ChangepwdComponent,
+    AllocatedBooksComponent,
+    UpdatebookComponent,
     FilterPipe,
     Filter2Pipe,
-    Filter3Pipe
+    UpdateuserComponent,
+   
   ],
   imports: [
     BrowserModule,

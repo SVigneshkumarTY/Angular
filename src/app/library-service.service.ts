@@ -1,144 +1,95 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 const headeroption = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibraryServiceService {
-
-  printMessage = '';
-  issueBookList: any = [];
-  selectedUser:any = {
-    userId: '',
-    userName: '',
-    userEmail: '',
-    userGender: '',
-    userContactNo: '',
-    userRole: ''
-  };
-  
-  studentBookRequest = {
-    userId : '',
-    bookId : '',
+  isLoggedIn=false;
+  printMessage='';
+  status=true;
+  status1=false;
+  url:string= 'http://localhost:8083/librarymanagement';
+  selectedUser:any={
+    UserName:null,
+    userContactNo:null,
+    userEmail:null,
+    userPassword:null,
+    userRole:null,
+    userGender:null,
+    userId:null
   }
 
-  selectedBook = {
-    bookId: '',
-    bookName: '',
-    authorName: '',
-    category: ''
-  };
+  allBooks:any[]=[];
 
-  url: string = 'http://localhost:8082/librarymanagement';
+  selectedBook:any={};
   constructor(private http: HttpClient) { }
+  userName='';
+  userId;
 
   addUser(data) {
-    return this.http.post(`${this.url}/register`, data, headeroption);
+    return this.http.post(`${this.url}/register`, data, headeroption );
   }
-
-
-
-  userLogin(data) {
-    return this.http.get(`${this.url}/login?userName=${data.userEmail}&password=${data.userPassword}`);
-  }
-
-  users: any = [];
-  getAllUsers() {
-    this.http.get(`${this.url}/get-all`).pipe(map(resData => {
-      let userArr = [];
-      for (let val in resData) {
-        userArr.push(resData[val]);
-      }
-      return userArr;
-    })).subscribe(data => {
-      this.users = data;
-    }, err => {
-      console.log(err);
-    });
-
-  }
-
-  updateUser(data) {
-    return this.http.put(`${this.url}/update`, data, headeroption);
-  }
-
-  removeUser(id) {
-    return this.http.delete(`${this.url}/remove/${id}`, headeroption);
-  }
-  changepassword(id,op,np){
-    return this.http.get(`${this.url}/changepwd?userId=${id}&userPassword=${op}&newPassword=${np}`,headeroption);
-    } 
 
   addBook(data) {
     return this.http.post(`${this.url}/addBook`, data, headeroption);
   }
   
-  books: any = [];
-  getAllBook() {
-    this.http.get(`${this.url}/getAllBook`).pipe(map(resData => {
-      let bookArr = [];
-      for (let val in resData) {
-        bookArr.push(resData[val]);
-      }
-      return bookArr;
-    })).subscribe(data => {
-      this.books = data;
-    }, err => {
-      console.log(err);
-    });
-
+  userLogin(name,password) {
+    return this.http.get<any>(`${this.url}/login?userName=${name}&password=${password}`, headeroption );
   }
 
-  updateBook(data) {
-    return this.http.put(`${this.url}/updateBook`, data, headeroption);
+  viewUsers(){
+    return this.http.get<any>(`${this.url}/get-all`,headeroption);
   }
 
-  removeBook(id) {
-    return this.http.delete(`${this.url}/deleteBook/${id}`, headeroption);
+  deleteUser(id){
+    return this.http.delete(`${this.url}/remove/${id}`,headeroption);
   }
 
-  accepBookIssueRequest(userId, bookId) {
-    return this.http.get(`${this.url}/acceptBookRequest?userId=${userId}&bookId=${bookId}`);
+  updateUser(user){
+    return this.http.put(`${this.url}/update`,user,headeroption);
   }
 
-  showIssueBooks() {
-    this.http.get(`${this.url}/getIssueBooks?userId=${localStorage.getItem('reqUserId')}`).pipe(map(resData => {
-      let bookArr = [];
-      for (let val in resData) {
-        bookArr.push(resData[val]);
-      }
-      return bookArr;
-    })).subscribe(data => {
-      this.issueBookList = data;
-    }, err => {
-      console.log(err);
-    });
+  viewBooks(){
+    return this.http.get<any>(`${this.url}/getAllBook`,headeroption);
+  }
+  deleteBook(id){
+    return this.http.delete(`${this.url}/deleteBook/${id}`,headeroption);
+  }
+  updateBook(book){
+    return this.http.put(`${this.url}/updateBook`,book,headeroption);
+  }
 
-    
+  changepassword(id,op,np){
+    return this.http.get(`${this.url}/changepwd?userEmail=${id}&userPassword=${op}&newPassword=${np}`,headeroption);
+    }
 
-    //return this.http.get(`${this.url}/getIssueBooks?userId=${userId}`);
-  }
-  returnBook(book){
-    //return this.http.get(`${this.url}/login?userName=${data.userEmail}&password=${data.userPassword}`);
-    return this.http. delete(`${this.url}/returnBook?bookId=${book.bookId}`);
-  }
-  searchUsers:any=[];
-  searchByName(userNAme){
-    this.http.get(`${this.url}/getByName?userName=${userNAme}`).pipe(map(resData => {
-      let userArr = [];
-      for (let val in resData) {
-        userArr.push(resData[val]);
-      }
-      return userArr;
-    })).subscribe(data => {
-      this.searchUsers = data;
-      console.log('hello');
-    }, err => {
-      console.log(err);
-    });
-  }
+    requestBook(data){
+      return this.http.post(`${this.url}/allocatebook/${this.userId}`,data,headeroption);
+    }
+
+    bookrequests(){
+      return this.http.get(`${this.url}/viewreqs`,headeroption);
+    }
+
+    acceptReq(data){
+      return this.http.post(`${this.url}/acceptreq`,data,headeroption);
+    }
+
+    userBooks(){
+      return this.http.get(`${this.url}/${this.userId}`,headeroption);
+    }
+
+    returnBook(id,data){
+      return this.http.post(`${this.url}/bookaction/${id}`,data,headeroption);
+    }
+
+    declineBook(id,data){
+      return this.http.post(`${this.url}/bookaction1/${id}`,data,headeroption);
+    }
+
 }

@@ -1,30 +1,40 @@
-<div class="container-fluid mt-5">
+<button class="btn btn-primary float-right mt-5 mr-5" (click)=goHome()>Home</button>
+<div class="container-fluid mt-3">
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                    <input type="button" class="btn btn-outline-success mt-2 mb-2" value="Home" (click)="librarianHomePage()">
                     <form action="" #bookform='ngForm' (ngSubmit)='addBook(bookform)' class="form-container">
-                            <h1 style="text-align: center;color: white" class="bg-dark"> Add Book!!</h1>
+                            <h1 style="text-align: center;color:black;font-family: fantasy;"> Add Book!!</h1><br>
                             <div class="form-group">
-                                <input type="number" name='bookId' #bookid='ngModel' [ngModel]="libraryService.selectedBook.bookId"  class="form-control" placeholder="Enter Book Id Here">
+                                <input type="number" name='bookId' #bookid='ngModel' ngModel  class="form-control" placeholder="Enter Book Id Here">
                             </div>
                             <div class="form-group">
-                                <input type="text" name='bookName' #bookName='ngModel' [(ngModel)]="libraryService.selectedBook.bookName"  class="form-control" placeholder="Enter Book Name Here">
+                                <input type="text" name='bookName' #bookName='ngModel' ngModel  class="form-control" placeholder="Enter Book Name Here">
                             </div>
                             <div class="form-group">
-                                    <input type="text" name='authorName' #authorName='ngModel' [(ngModel)]="libraryService.selectedBook.authorName"  class="form-control" placeholder="Enter Author Name Here">
+                                    <input type="text" name='author1' #author1='ngModel' ngModel  class="form-control" placeholder="Enter Author 1 Name Here">
                                 </div>
                                 <div class="form-group">
-                                        <input type="text" name='category' #category='ngModel' [(ngModel)]="libraryService.selectedBook.category"   class="form-control" placeholder="Enter Category Here">
+                                    <input type="text" name='author2' #author2='ngModel' ngModel  class="form-control" placeholder="Enter Author 2 Name Here">
+                                </div>
+                                <div class="form-group">
+                                        <input type="text" name='publisher' #publisher='ngModel' ngModel  class="form-control" placeholder="Enter Publisher Here">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" name='yearOfPublication' #yearOfPublication='ngModel' ngModel class="form-control" placeholder="Enter yearOfPublication Here">
                                     </div>
                                    
                             <div class="form-group">
                                 <button type="reset" class="btn btn-warning col-md-6 form-control">Reset</button>
                                 <button type="submit" class="btn btn-success col-md-6 form-control float-right">Add Book</button>
                             </div>
+                            <div class="form-group">
+                                <h5 style="color:green;text-align: center;">{{msg}}</h5>
+                            </div>
                         </form>
             </div>
     
         </div>
     </div>
+    
     

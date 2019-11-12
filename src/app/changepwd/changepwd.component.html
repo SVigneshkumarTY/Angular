@@ -1,27 +1,27 @@
-<h3 style="color:greenyellow;text-align: center;font-family: fantasy;">{{msg}}</h3>
 
+<button class="btn btn-primary float-right mt-5 mr-5" (click)='goHome()'>Home</button>
 <div class="container-fluid mt-5">
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <form action="" #form='ngForm' (ngSubmit)='changepwd(form.value)'  class="form-container">
-                    <h1 style="text-align: center;color: orangered"> Change Password!!</h1>
+                    <h1 style="text-align: center;font-family: fantasy;"> Change Password!!</h1> <br>
                     <div class="form-group">
-                        <input type="number" name='userId' #userId='ngModel' ngModel class="form-control"
-                            placeholder="Enter Id Here" required >
+                        <input type="email" name='userEmail' #userEmail='ngModel' ngModel class="form-control"
+                            placeholder="Enter Email Id Here" required >
                     </div>
                     <div class="form-group">
                             <input type="password" name='userPassword' #userPassword='ngModel' ngModel class="form-control"
-                                placeholder="Enter old password Here"  >
+                                placeholder="Enter old password Here">
                         </div>
                         <div class="form-group">
                                 <input type="password" name='newPassword' #newPassword='ngModel' ngModel class="form-control"
                                     placeholder="Enter new password Here" required >
                             </div>
-                    
+                    <br>
                     <div class="form-group">
-                        <button type="reset" class="btn btn-warning col-md-6 form-control">Reset</button>
-                        <button type="submit" class="btn btn-success col-md-6 form-control float-right"
+                        <button type="reset" class="btn btn-info col-md-6 form-control">Reset</button>
+                        <button type="submit" class="btn btn-dark col-md-6 form-control float-right"
                             >Change Password</button>
                     </div>
                 </form>
